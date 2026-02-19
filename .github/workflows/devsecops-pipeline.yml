@@ -116,16 +116,15 @@ jobs:
       - name: Run Tests with Coverage (for SonarQube)
         run: npx vitest run --coverage || true
 
-      # FIX: Pass sonar args inline to override sonar-project.properties safely
+      # FIX: projectName with spaces must go in sonar-project.properties only
+      # Passing it via -D args breaks CLI parsing (space = new argument)
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
+          SONAR_SCANNER_OPTS: >-
             -Dsonar.projectKey=DevSecOps-Scanning
-            -Dsonar.projectName=DevSecOps Scanning
             -Dsonar.sources=src
             -Dsonar.tests=src/__tests__
             -Dsonar.test.inclusions=**/*.test.ts,**/*.test.tsx
