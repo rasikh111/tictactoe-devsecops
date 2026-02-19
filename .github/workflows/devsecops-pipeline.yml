@@ -1,9 +1,3 @@
-# .github/workflows/devsecops-pipeline.yml
-# DevSecOps CI/CD Pipeline - FULLY FIXED v3
-# Fix 1: OWASP DC failOnCVSS raised to 10 + suppression file added
-# Fix 2: npm audit only fails on critical --omit=dev
-# Fix 3: All other stages unchanged and working
-
 name: DevSecOps Pipeline
 
 on:
