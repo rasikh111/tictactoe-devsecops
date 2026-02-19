@@ -1,0 +1,3 @@
+# .zap/rules.tsv - ZAP rule overrides
+10035	IGNORE	(Strict-Transport-Security - dev only)
+10038	IGNORE	(Content Security Policy - configure in prod)
