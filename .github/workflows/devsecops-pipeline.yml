@@ -124,7 +124,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_SCANNER_OPTS: >-
-            -Dsonar.projectKey=DevSecOps-Scanning
+            -Dsonar.projectKey=DevSecOps-Scaning
             -Dsonar.sources=src
             -Dsonar.tests=src/__tests__
             -Dsonar.test.inclusions=**/*.test.ts,**/*.test.tsx
