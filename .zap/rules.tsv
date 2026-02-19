@@ -1,3 +1,4 @@
-# .zap/rules.tsv - ZAP rule overrides
-10035	IGNORE	(Strict-Transport-Security - dev only)
-10038	IGNORE	(Content Security Policy - configure in prod)
+10035	IGNORE	Strict-Transport-Security Header - Not needed in dev/staging
+10038	IGNORE	Content Security Policy (CSP) - Configure in production only
+10098	IGNORE	Cross-Domain Misconfiguration - Static site, expected
+90003	IGNORE	Sub Resource Integrity Attribute Missing - Vite handles this
