@@ -126,7 +126,7 @@ A complete end-to-end DevSecOps CI/CD pipeline for a React + TypeScript web appl
 | Testing | Vitest + jsdom | 3.x |
 | Container | Docker (nginx:alpine) | Latest |
 | CI/CD | GitHub Actions | — |
-| Cloud | AWS EC2 t2.micro | Amazon Linux 2 |
+| Cloud | AWS EC2 t2.micro | Ubuntu 24 |
 | Code Analysis | SonarQube Community | v26.2 |
 | Registry | Docker Hub | — |
 
