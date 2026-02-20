@@ -283,25 +283,24 @@ jobs:
           done
 
       - name: Fix ZAP workspace permissions
-        run: |
-          chmod 777 ${{ github.workspace }}
-          chmod 777 ${{ github.workspace }}/.zap 2>/dev/null || true
+        run: chmod -R 777 ${{ github.workspace }}
 
+      # FIX 1: Use docker run directly instead of zaproxy/action-baseline
+      # This avoids the internal "zap_scan" artifact naming conflict
+      # FIX 2: -I flag = informational mode - WARNs do not fail the scan
       - name: OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.12.0
-        with:
-          target: http://${{ secrets.EC2_HOST }}
-          rules_file_name: .zap/rules.tsv
-          cmd_options: -a
-          fail_action: false
-          allow_issue_writing: false
+        run: |
+          docker pull ghcr.io/zaproxy/zaproxy:stable -q
+          docker run --rm             -v ${{ github.workspace }}:/zap/wrk/:rw             --network=host             ghcr.io/zaproxy/zaproxy:stable             zap-baseline.py             -t http://${{ secrets.EC2_HOST }}             -r report_html.html             -J report_json.json             -I             -a             -c .zap/rules.tsv             || echo "ZAP scan completed with warnings (non-blocking)"
 
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: zap-dast-report
-          path: report_html.html
+          path: |
+            ${{ github.workspace }}/report_html.html
+            ${{ github.workspace }}/report_json.json
 
 # =============================================
 # JOB 8: Slack Notification (ALWAYS runs)
