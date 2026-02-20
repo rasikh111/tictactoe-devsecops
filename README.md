@@ -269,13 +269,13 @@ Go to your GitHub repository → **Settings** → **Secrets and variables** → 
 
 | Secret Name | Description | Example |
 |-------------|-------------|---------|
-| `DOCKER_USERNAME` | Your Docker Hub username | `rasikh111` |
-| `DOCKER_TOKEN` | Docker Hub access token (not password) | `dckr_pat_xxx...` |
-| `EC2_HOST` | EC2 public IP address | `34.244.163.205` |
+| `DOCKER_USERNAME` | Your Docker Hub username | `-` |
+| `DOCKER_TOKEN` | Docker Hub access token (not password) | `-` |
+| `EC2_HOST` | EC2 public IP address | `-` |
 | `EC2_USER` | EC2 login user | `ec2-user` |
-| `EC2_SSH_KEY` | Full contents of your `.pem` private key | `-----BEGIN RSA PRIVATE KEY-----...` |
-| `SONAR_TOKEN` | SonarQube Global Analysis Token | `sqa_xxx...` |
-| `SONAR_HOST_URL` | SonarQube server URL | `http://34.244.163.205:9000` |
+| `EC2_SSH_KEY` | Full contents of your `.pem` private key | `-` |
+| `SONAR_TOKEN` | SonarQube Global Analysis Token | `-` |
+| `SONAR_HOST_URL` | SonarQube server URL | `http://yourpubip:9000` |
 | `SLACK_WEBHOOK_URL` | Slack incoming webhook URL | `https://hooks.slack.com/services/...` |
 
 ### How to get Docker Hub Token
@@ -291,9 +291,9 @@ Go to your GitHub repository → **Settings** → **Secrets and variables** → 
 # The full content of your .pem file including headers
 cat your-key.pem
 # Copy everything including:
-# -----BEGIN RSA PRIVATE KEY-----
+# -
 # ...
-# -----END RSA PRIVATE KEY-----
+# -
 ```
 
 ---
@@ -302,7 +302,7 @@ cat your-key.pem
 
 ### 1. Launch EC2 Instance
 
-- **AMI:** Amazon Linux 2
+- **AMI:** Ubuntu 24
 - **Instance type:** t2.micro (free tier)
 - **Key pair:** Create or use existing `.pem` key
 
